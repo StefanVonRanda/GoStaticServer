@@ -21,9 +21,6 @@ func main() {
 		http.ServeFile(w, r, "./dist"+urlPath)
 	})
 
-	fileServer := http.FileServer(http.Dir("./dist"))
-	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
-
 	log.Println("Listening on localhost:3000...")
 	if err := http.ListenAndServe(":3000", mux); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
